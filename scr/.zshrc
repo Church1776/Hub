@@ -14,37 +14,41 @@ compinit
 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-ZSCRIPTDIR="${(%):-%N}"
-ZSCRIPTDIR="${ZSCRIPTDIR:h}"
+ZSCRIPTDIR=(
+  "$HOME/.config"
+  "$HOME/.local"
+  "/usr/share"
+  "/usr/local/share"
+)
 
-echo $ZSCRIPTDIR
-
-function add_zenhance {
-    local zenhance="$ZSCRIPTDIR/config/zsh/zenhance/zenhance.zsh"
-
-    if [[ -z "$Z_SHELL_ENHANCE_ADDED" && -f $zenhance ]]; then
-        source "$zenhance"
-    fi
+function zloadconfigs {
+	local zname="$1"
+	if [[ -z $zname ]]; then
+		return 1
+	fi
+	local zfile=""
+	for dir in $ZSCRIPTDIR; do
+		zfile="$(find "$dir" -maxdepth 3 -name "${zname:l}.zsh" 2>/dev/null)"
+		if [[ -f $zfile ]]; then
+			break
+		fi
+	done
+	if [[ -z $zfile ]]; then
+		echo "$zname not installed."
+		return 1
+	fi
+	source "$zfile"
 }
-add_zenhance
-unset -f add_zenhance
 
-function add_zsh_autosuggestions {
-    
-  local zauto="$ZSCRIPTDIR/config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  if [[ -z "$Z_SHELL_AUTO_ADDED" && -f $zauto ]]; then
-    source "$zauto"
-  fi
-}
-add_zsh_autosuggestions
-unset -f add_zsh_autosuggestions
+zloadconfigs "Zenhance"
+zloadconfigs "Zsh-Autosuggestions"
+zloadconfigs "Zsh-Syntax-Highlighting"
 
-function add_zsh_syntax_highlight {
-    
-  local zsyntax="$ZSCRIPTDIR/config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  if [[ -z "$Z_SHELL_HIGHLIGHT_ADDED" && -f $zsyntax ]]; then
-    source "$zsyntax"
-  fi
-}
-add_zsh_syntax_highlight
-unset -f add_zsh_syntax_highlight
+unset -f zloadconfigs
+
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=red'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=254'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=254'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=254'
