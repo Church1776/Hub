@@ -26,5 +26,46 @@
         }//*/
     ],
     "settings": {
+        "vsicons.associations.files": [
+            {
+                "icon": "clangd",
+                "extensions": [
+                    ".clangd",
+                    ".clang-format",
+                    ".clang-format-ignore",
+                    ".clang-tidy",
+                    ".clang-tidy-ignore",
+                    ".clang-tidy-apply-replacements"
+                ],
+                "format": "svg"
+            },
+            {
+                "icon": "json",
+                "extensions": [".json"],
+                "format": "svg"
+            }
+        ],
+        "vsicons.associations.folders": [
+            {
+                "icon": "script",
+                "extensions": ["scr", "script", "scripts"],
+                "format": "svg"
+            },
+            {
+                "icon": "ios",
+                "extensions": ["darwin"],
+                "format": "svg"
+            },
+            {
+                "icon": "theme",
+                "extensions": ["colors"],
+                "format": "svg"
+            },
+            {
+                "icon": "controller",
+                "extensions": ["subprocesses"],
+                "format": "svg"
+            }
+        ]
     }
 }
