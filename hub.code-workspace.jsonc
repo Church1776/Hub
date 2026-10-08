@@ -47,13 +47,18 @@
         ],
         "vsicons.associations.folders": [
             {
-                "icon": "script",
-                "extensions": ["scr", "script", "scripts"],
+                "icon": "client",
+                "extensions": ["platforms"],
                 "format": "svg"
             },
             {
-                "icon": "ios",
-                "extensions": ["darwin"],
+                "icon": "script",
+                "extensions": ["scr"],
+                "format": "svg"
+            },
+            {
+                "icon": "windows",
+                "extensions": ["msys"],
                 "format": "svg"
             },
             {
@@ -62,10 +67,49 @@
                 "format": "svg"
             },
             {
+                "icon": "interfaces",
+                "extensions": ["aliases"],
+                "format": "svg"
+            },
+            {
+                "icon": "shared",
+                "extensions": ["keybinds"],
+                "format": "svg"
+            },
+            {
                 "icon": "controller",
                 "extensions": ["subprocesses"],
                 "format": "svg"
+            },
+            {
+                "icon": "cursor",
+                "extensions": ["cursor"],
+                "format": "svg"
             }
-        ]
+        ],
+        "vsicons.presets.hideExplorerArrows": true,
+        "files.associations": {
+            ".clang-format": "yaml",
+            ".clang-tidy": "yaml",
+            ".clangd": "yaml",
+            "*.inc": "cpp",
+            "*.inl": "cpp"
+        },
+        "editor.semanticHighlighting.enabled": true,
+        "editor.semanticTokenColorCustomizations": {
+            "rules": {
+                "class": "#ffef63",
+                "enum": "#5fb2fa",
+                "function": "#df9fff",
+                "enumMember": "#b4b4b4",
+                "namespace": "#ffa846",
+                "struct": "#ffef63",
+                "variable": "#fefefe",
+                "property": "#b4b4b4",
+                "parameter": "#60ffc5",
+                "macro": "#df9fff",
+                "method": "#df9fff"
+            }
+        }
     }
 }
